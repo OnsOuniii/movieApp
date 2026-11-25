@@ -1,15 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Tab 2 </ion-title>
-  </ion-toolbar>
+<ion-header>
+  <ion-toolbar><ion-title>Mes favoris</ion-title></ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content>
+  @if (favorites.length === 0) {
+    <p class="ion-padding">Aucun film favori pour le moment.</p>
+  }
+  <ion-list>
+    @for (m of favorites; track m.id) {
+      <ion-item>
+        <ion-thumbnail slot="start"><img [src]="m.poster" /></ion-thumbnail>
+        <ion-label>
+          <h2>{{ m.title }}</h2>
+          <p>{{ m.year }} · {{ m.actors.join(', ') }}</p>
+        </ion-label>
+        <ion-button fill="clear" color="danger" slot="end" (click)="remove(m)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    }
+  </ion-list>
 </ion-content>
