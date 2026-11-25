@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>Administration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="admin-container">
+
+    <section class="card">
+      <h3>Utilisateurs</h3>
+      <ion-list>
+        @for (u of users; track u.id) {
+          <ion-item class="user-item" lines="none">
+            @if (u.photo) {
+              <ion-avatar slot="start">
+                <img [src]="u.photo" alt="photo" />
+              </ion-avatar>
+            }
+            <ion-label>
+              <h4>
+                {{ u.prenom }} {{ u.nom }}
+                <span class="badge" [class.off]="!u.isActive">
+                  {{ u.isActive ? 'Actif' : 'Désactivé' }}
+                </span>
+              </h4>
+              <p>{{ u.email }}</p>
+            </ion-label>
+            <ion-toggle
+              slot="end"
+              [checked]="u.isActive"
+              (ionChange)="toggle(u, $event.detail.checked)">
+            </ion-toggle>
+          </ion-item>
+        }
+      </ion-list>
+    </section>
+
+    <section class="card">
+      <h3>Ajouter un film</h3>
+      <div class="movie-form">
+        <ion-input class="full" fill="outline" label="Titre" labelPlacement="floating" [(ngModel)]="movie.title"></ion-input>
+        <ion-input fill="outline" label="Année" type="number" labelPlacement="floating" [(ngModel)]="movie.year"></ion-input>
+        <ion-input fill="outline" label="Genre" labelPlacement="floating" [(ngModel)]="movie.genre"></ion-input>
+        <ion-input class="full" fill="outline" label="URL de l'affiche" labelPlacement="floating" [(ngModel)]="movie.poster"></ion-input>
+        <ion-button class="full" expand="block" (click)="addMovie()">Ajouter</ion-button>
+      </div>
+      @if (message) {
+        <p class="success">{{ message }}</p>
+      }
+    </section>
+
+  </div>
+</ion-content>

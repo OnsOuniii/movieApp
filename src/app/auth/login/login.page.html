@@ -1,0 +1,10 @@
+<ion-header><ion-toolbar><ion-title>Connexion</ion-title></ion-toolbar></ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-input label="Email" type="email" labelPlacement="floating" formControlName="email"></ion-input>
+    <ion-input label="Mot de passe" type="password" labelPlacement="floating" formControlName="password"></ion-input>
+    <ion-button type="submit" expand="block" [disabled]="form.invalid">Se connecter</ion-button>
+    <p style="color:red">{{ error }}</p>
+    <a routerLink="/register">Pas de compte ? S'inscrire</a>
+  </form>
+</ion-content>

@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-
+  tmdbKey: 'COLLE_ICI_LA_CLE_TMDB',
   firebase: {
     apiKey: 'AIzaSyBjX6iCTDKaZnaW-sNCa-AVUkKVrP958Y8',
     authDomain: 'movieapp-26dcf.firebaseapp.com',

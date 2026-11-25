@@ -1,0 +1,17 @@
+<ion-header><ion-toolbar><ion-title>Inscription</ion-title></ion-toolbar></ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-input label="Nom" labelPlacement="floating" formControlName="nom"></ion-input>
+    <ion-input label="Prénom" labelPlacement="floating" formControlName="prenom"></ion-input>
+    <ion-input label="Âge" type="number" labelPlacement="floating" formControlName="age"></ion-input>
+    <ion-input label="Email" type="email" labelPlacement="floating" formControlName="email"></ion-input>
+    <ion-input label="Mot de passe" type="password" labelPlacement="floating" formControlName="password"></ion-input>
+
+    <ion-button type="button" fill="outline" (click)="takePhoto()">Prendre une photo</ion-button>
+    @if (photo) { <ion-img [src]="photo"></ion-img> }
+
+    <ion-button type="submit" expand="block" [disabled]="form.invalid || !photo">S'inscrire</ion-button>
+    <p style="color:red">{{ error }}</p>
+    <a routerLink="/login">Déjà un compte ? Se connecter</a>
+  </form>
+</ion-content>
